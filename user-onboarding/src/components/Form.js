@@ -44,6 +44,7 @@ const Form = () => {
     });
 
     const [disabled, setDisabled] = useState(true)
+    const [users, setUsers] = useState([])
 
     const setFormErrors = (name, value) => {
         yup.reach(schema, name).validate(value)
@@ -68,17 +69,16 @@ const Form = () => {
         }
         axios.post("https://reqres.in/api/users", newName)
              .then(res => {
+                setUsers(res.data)
                 setForm({
                     name: "",
                     email: "",
                     password: "",
                     tos: false
                 })
-                console.log("Success: " + res.users)
+                console.log(res)
              })
-             .catch(err => {
-
-             })
+             .catch(err => console.log(err.res))
     }
 
     useEffect(() => {
@@ -125,8 +125,8 @@ const Form = () => {
                     name="tos"
                     type="checkbox" />
             </label>
-            
             <button disabled={disabled}>Submit</button>
+            <pre>{JSON.stringify(users, null, 2)}</pre>
         </form>
     </StyledForm>
     )
