@@ -5,7 +5,10 @@ import axios from "axios"
 
 const StyledForm = styled.div`
 label {
+    font-size: 20px;
     font-weight: bold;
+    color: yellow;
+    text-shadow: 2px 2px 5px red;
 }
 
 input {
@@ -15,8 +18,11 @@ input {
 }
 
 button {
-    background-color: lightgreen;
-    padding: 10px 10px;
+    font-size: 20px;
+    font-weight: bolder;
+    background-color: yellow;
+    margin-top: 10px;
+    padding: 10px 25px;
 }
 `
 
@@ -94,7 +100,7 @@ const Form = () => {
             <div>{errors.tos}</div>
         </div>
         <form onSubmit={submit}>
-            <label>Name:
+            <label>Member:
                 <input
                     onChange={change}
                     value={form.name}
@@ -125,6 +131,7 @@ const Form = () => {
                     name="tos"
                     type="checkbox" />
             </label>
+
             <button disabled={disabled}>Submit</button>
             <pre>{JSON.stringify(users, null, 2)}</pre>
         </form>
